@@ -2,14 +2,18 @@ import Adapter.*;
 import Adapter.CreditCardPayment;
 import Adapter.PayPalPayment;
 import Bridge.*;
+import Composite.MenuCategory;
+import Composite.MenuItem;
 import Decorator.*;
 import Facade.GitFacade;
 import FlyWeight.ChessPiece;
 import FlyWeight.ChessPieceFactory;
+import Proxy.IServer;
+import Proxy.ProxyServer;
 
 public class Main{
     public static void main(String[] args){
-        FlyWeightMenu();
+        proxyMenu();
     }
 
     public static void facadeMenu(){
@@ -69,5 +73,35 @@ public class Main{
         order.pay(650);
 
         payment.pay(150);
+    }
+
+    public static void proxyMenu(){
+        IServer server = new ProxyServer();
+        server.fetchData();
+        server.fetchData();
+        server.fetchData();
+        server.fetchData();
+    }
+
+    public void compositeMenu(){
+        MenuItem pizza = new MenuItem("Піца", 8.99);
+        MenuItem pasta = new MenuItem("Паста", 7.49);
+        MenuItem coffee = new MenuItem("Кава", 2.99);
+        MenuItem tea = new MenuItem("Чай", 1.99);
+
+        MenuCategory drinks = new MenuCategory("Напої");
+        MenuCategory mainDishes = new MenuCategory("Головні страви");
+        MenuCategory menu = new MenuCategory("Меню ресторану");
+
+        drinks.addComponent(coffee);
+        drinks.addComponent(tea);
+        mainDishes.addComponent(pizza);
+        mainDishes.addComponent(pasta);
+
+        menu.addComponent(drinks);
+        menu.addComponent(mainDishes);
+
+        // Виводимо меню
+        menu.showInfo();
     }
 }

@@ -7,7 +7,7 @@ public class CinnamonCoffeeDecorator extends CoffeeDecorator{
 
     @Override
     public void prepare(){
-        System.out.println("Adding cinnamon");
+        System.out.println("Coffee with cinnamon");
     }
 
 }

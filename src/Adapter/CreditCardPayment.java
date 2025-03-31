@@ -10,6 +10,7 @@ public class CreditCardPayment implements IPaymentSystem{
         this.cardNumber = cardNumber;
         this.ownerInfo = ownerInfo;
         this.cardExpMonth = cardExpMonth;
+        this.amount = amount;
     }
     @Override
     public void pay(double amount) {
@@ -18,7 +19,7 @@ public class CreditCardPayment implements IPaymentSystem{
 
     @Override
     public double getAmount() {
-        return 0;
+        return this.amount;
     }
 
     public String getCardNumber(){
